@@ -1,0 +1,28 @@
+{
+  "generation": [
+    {
+      "templateId": "ui5template.emptyMobileProjectKapsel",
+      "templateVersion": "1.28.1",
+      "dateTimeStamp": "Fri, 20 Jan 2017 18:39:24 GMT"
+    }
+  ],
+  "translation": {
+    "translationDomain": "",
+    "supportedLanguages": "en,fr,de",
+    "defaultLanguage": "en",
+    "defaultI18NPropertyFile": "i18n.properties",
+    "resourceModelName": "i18n"
+  },
+  "projectType": [
+    "com.sap.webide.hybrid.cordova",
+    "sap.watt.uitools.ide.fiori"
+  ],
+  "hybrid": {
+    "FacadeConfig": {
+      "cordova-plugin-device-orientation": false,
+      "accelerometer": {},
+      "compass": {},
+      "bFacade": true
+    }
+  }
+}
