@@ -10,3 +10,9 @@ mock_preview_sapui5.html
 .*/mock_preview_sapui5.html
 UIAdaptation_index.html
 changes_preview.js
+.idea/
+bower_components/openui5-sap.ui.core/.bower.json
+bower_components/
+platforms/
+plugins/
+.vscode/

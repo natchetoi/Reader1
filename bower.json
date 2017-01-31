@@ -1,0 +1,26 @@
+{
+  "name": "Reader1",
+  "homepage": "https://github.com/natchetoi/Reader1",
+  "authors": [
+    "Slava Bychkov <slavnost@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "keywords": [
+    "Reader"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "openui5-sap.ui.core": "openui5/packaged-sap.ui.core#^1.44.5",
+    "cordova": "^3.4.0",
+    "linqjs": "^3.0.5"
+  }
+}

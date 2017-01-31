@@ -4,7 +4,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>
 
-		<script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+		<script src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
 				id="sap-ui-bootstrap"
 				data-sap-ui-libs="sap.m"
 				data-sap-ui-resourceroots='{"Reader1": "./"}'
@@ -34,21 +34,6 @@
 		</script>
 
 		<script>
-				function getUrlParameterName(sParam)
-				{
-					var sPageURL = window.location.search.substring(1);
-					var sURLVariables = sPageURL.split('&');
-					for (var i = 0; i < sURLVariables.length; i++) 
-					{
-						var sParameterName = sURLVariables[i].split('=');
-						if (sParameterName[0] === sParam) 
-						{
-							return true;
-						}
-					}
-					return false;
-				} 
-			
 				sap.ui.localResources("view");
 				var app = new sap.m.App({initialPage:"idMain"});
 				
@@ -60,13 +45,8 @@
 				}
 				
 				window.onload = function() {
-					if (window.cordova || getUrlParameterName("companionbuster")) {
+					if (window.cordova) {
 						jQuery.sap.require("Reader1.devapp");
-						
-						var page = window.location.pathname.split("/").pop();
-		                if(page === "preview_hidden.html") {
-		                    window.sap_webide_FacadePreview = true;
-		                }
 						Reader1.devapp.initialize();
 					}
 					else {
