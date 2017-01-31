@@ -38,7 +38,17 @@
                 </contentRight>
             </Bar>
         </customHeader>
-        <content></content>
+        <content>
+            <Carousel loop="true">
+                <pages>
+                    <Image src="img/1.jpg" />
+                    <Image src="img/2.jpg" />
+                    <Image src="img/3.jpg" />
+                    <Image src="img/4.jpg" />
+                    <Image src="img/5.jpg" />
+                </pages>
+            </Carousel>
+        </content>
         <footer>
             <Bar>
                 <contentLeft>
