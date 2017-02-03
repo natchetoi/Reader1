@@ -23,16 +23,37 @@ sap.ui.controller("Reader1.view.Main", {
 	 * This hook is the same one that SAPUI5 controls get after being rendered.
 	 * @memberOf Reader1.view.Main
 	 */
-	//	onAfterRendering: function() {
-	//
-	//	},
+		onAfterRendering: function() {
+			var content = this.byId("content");
+			
+			content.visible = true;
+			var html1 = this.byId("html1");
+			
+/*			
+			var html2 = new new sap.ui.core.HTML("html1", { content: 
+				"&lt;p&gt;Hello World&lt;/p&gt;", 
+				preferDOM : false,
+				afterRendering : function(e) {
+					alert('Rendered');
+				}			
+			});
+*/			
+
+			var gallery = this.byId("gallery");
+			
+			var img1 = new Image("img1", { src : "img/1.jpg" });
+			
+//			gallery.addPage( img1 );
+			gallery.visible = true;
+	//		html1.visible = false;
+		},
 
 	/**
 	 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 	 * @memberOf Reader1.view.Main
 	 */
-	//	onExit: function() {
-	//
-	//	}
+		onExit: function() {
+	
+		}
 
 });

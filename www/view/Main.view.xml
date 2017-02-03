@@ -1,5 +1,6 @@
-<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m"
-           controllerName="Reader1.view.Main">
+ <core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" 
+			xmlns:html="http://www.w3.org/1999/xhtml" 
+			xmlns="sap.m" controllerName="Reader1.view.Main">
     <Page title="Title" showNavButton="false">
         <customHeader>
             <Bar>
@@ -22,7 +23,7 @@
 
                 </contentLeft>
                 <contentMiddle>
-                    <Text text="Reader"></Text>
+                    <Text text="Reader"/>
                 </contentMiddle>
                 <contentRight>
                     <MenuButton icon="sap-icon://user-settings">
@@ -39,15 +40,19 @@
             </Bar>
         </customHeader>
         <content>
-            <Carousel loop="true">
+           <!---core:HTML  id="html1" content="&lt;p&gt;Hello World&lt;/p&gt;" /-->
+            <Carousel loop="true"  id="gallery">
                 <pages>
-                    <Image src="img/1.jpg" />
-                    <Image src="img/2.jpg" />
-                    <Image src="img/3.jpg" />
-                    <Image src="img/4.jpg" />
-                    <Image src="img/5.jpg" />
+                    <Image src="img/1.jpg"/>
+                    <Image src="img/2.jpg"/>
+                    <Image src="img/3.jpg"/>
+                    <Image src="img/4.jpg"/>
+                    <Image src="img/5.jpg"/>
                 </pages>
             </Carousel>
+            <html:div visible="false" id="content" >
+            	
+            </html:div>
         </content>
         <footer>
             <Bar>
@@ -57,18 +62,18 @@
                             <Menu>
                                 <items>
                                     <MenuItem text="Zoom In" icon="sap-icon://zoom-in"/>
-                                    <MenuItem text="Zoom Out" icon="sap-icon://zoom-out" />
+                                    <MenuItem text="Zoom Out" icon="sap-icon://zoom-out"/>
                                 </items>
                             </Menu>
                         </menu>
                     </MenuButton>
-                    <Button icon="sap-icon://search" />
-                    <Button icon="sap-icon://bookmark" />
-                    <Button icon="sap-icon://share-2" />
+                    <Button icon="sap-icon://search"/>
+                    <Button icon="sap-icon://bookmark"/>
+                    <Button icon="sap-icon://share-2"/>
 
                 </contentLeft>
                 <contentRight>
-                    <Button icon="sap-icon://full-screen" />
+                    <Button icon="sap-icon://full-screen"/>
                 </contentRight>
             </Bar>
         </footer>
