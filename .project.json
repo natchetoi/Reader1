@@ -28,7 +28,7 @@
   "mockpreview": {
     "mockUri": "",
     "metadataFilePath": "model/metadata.xml",
-    "loadJSONFiles": false,
+    "loadJSONFiles": true,
     "loadCustomRequests": false,
     "mockRequestsFilePath": ""
   }

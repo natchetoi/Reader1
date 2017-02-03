@@ -1,63 +1,126 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<edmx:Edmx
-    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
-    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Version="1.0">
+<?xml version="1.0" encoding="UTF-8"?><edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Version="1.0">
     <edmx:DataServices m:DataServiceVersion="2.0">
-        <Schema
-            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="Approvals">
-            <EntityType Name="ApprovalReq">
+        <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="Content">
+            <EntityType Name="Taxonomy">
                 <Key>
-                    <PropertyRef Name="RequestID"/>
+                    <PropertyRef Name="TaxonomyID"/>
                 </Key>
-                <Property Name="RequestID" Nullable="false" Type="Edm.String"/>
-                <Property Name="requester" Type="Edm.String"/>
-                <Property Name="approvalSubject" Type="Edm.String"/>
-                <Property Name="approver" Type="Edm.String"/>
-                <Property Name="approvalId" Type="Edm.String"/>
-                <Property Name="ApprovalSummary" Type="Edm.String"/>
-                <Property Name="approvalType" Type="Edm.String"/>
-                <Property Name="approvalStatus" Type="Edm.String"/>
-                <Property Name="errorCode" Type="Edm.String"/>
-                <Property Name="errorDescription" Type="Edm.String"/>
-                <NavigationProperty FromRole="From_ApprovalReq" Name="ApproveAction" Relationship="Approvals.ApprovalReqApproveAction" ToRole="To_Action"/>
+                <Property Name="TaxonomyID" Nullable="false" Type="Edm.Int16"/>
+                <Property Name="name" Type="Edm.String"/>
+                <NavigationProperty FromRole="From_Taxonomy" Name="Tags" Relationship="Content.TaxonomyTerm" ToRole="To_Term"/>
             </EntityType>
-            <EntityType Name="ApprovalResp">
+            <EntityType Name="Term">
                 <Key>
-                    <PropertyRef Name="ResponseID"/>
+                    <PropertyRef Name="TermID"/>
                 </Key>
-                <Property Name="ResponseID" Nullable="false" Type="Edm.String"/>
-                <Property Name="UPDATED" Type="Edm.String"/>
-                <Property Name="STATUS" Type="Edm.String"/>
-                <Property Name="ErrorCode" Type="Edm.String"/>
-                <Property Name="ErrorDescription" Type="Edm.String"/>
+                <Property Name="TermID" Nullable="false" Type="Edm.Int32"/>
+                <Property Name="name" Type="Edm.String"/>
+                <Property Name="parent" Type="Edm.String"/>
+                <Property Name="alias" Type="Edm.String"/>
+                <Property Name="active" Type="Edm.Boolean"/>
+                <Property Name="taxonomyID" Type="Edm.Int16"/>
+                <NavigationProperty FromRole="To_Term" Name="Taxonomy" Relationship="Content.TaxonomyTerm" ToRole="From_Taxonomy"/>
+                <NavigationProperty FromRole="To_Term" Name="Content" Relationship="Content.ContentTerm" ToRole="From_Content"/>
+                <NavigationProperty FromRole="From_Term" Name="ChildTags" Relationship="Content.TermTerm" ToRole="To_Term"/>
+                <NavigationProperty FromRole="To_Term" Name="ParentTag" Relationship="Content.TermTerm" ToRole="From_Term"/>
             </EntityType>
-            <EntityType Name="ApproveAction">
+            <EntityType Name="Content">
                 <Key>
-                    <PropertyRef Name="ApproveActionID"/>
+                    <PropertyRef Name="ContentID"/>
                 </Key>
-                <Property Name="ApproveActionID" Nullable="false" Type="Edm.String"/>
-                <Property Name="Action" Type="Edm.String"/>
-                <NavigationProperty FromRole="From_Action" Name="ApprovalRespSet" Relationship="Approvals.ApproveActionApprovalResp" ToRole="To_ApprovalResp"/>
+                <Property Name="ContentID" Nullable="false" Type="Edm.Int32"/>
+                <Property Name="title" Type="Edm.String"/>
+                <Property Name="type" Type="Edm.String"/>
+                <Property Name="body" Type="Edm.String"/>
+                <Property Name="comments" Type="Edm.String"/>
+                <Property Name="publishDate" Type="Edm.DateTime"/>
+                <Property Name="expireDate" Type="Edm.DateTime"/>
+                <Property Name="url" Type="Edm.String"/>
+                <Property Name="price" Type="Edm.Decimal"/>
+                <Property Name="points" Type="Edm.Int32"/>
+                <Property Name="promoted" Type="Edm.Int16"/>
+                <Property Name="parent" Type="Edm.Int32"/>
+                <NavigationProperty FromRole="To_Content" Name="SocialChannel" Relationship="Content.SocialChannelContent" ToRole="From_Social"/>
+                <NavigationProperty FromRole="From_Content" Name="TermSet" Relationship="Content.ContentTerm" ToRole="To_Term"/>
+                <NavigationProperty FromRole="From_Content" Name="ImageSet" Relationship="Content.ContentImage" ToRole="To_Image"/>
+                <NavigationProperty FromRole="From_Content" Name="ContentChildren" Relationship="Content.ContentContent" ToRole="To_Content"/>
+                <NavigationProperty FromRole="To_Content" Name="ContentParent" Relationship="Content.ContentContent" ToRole="From_Content"/>
             </EntityType>
-            <Association Name="ApprovalReqApproveAction">
-                <End Multiplicity="1" Role="From_ApprovalReq" Type="Approvals.ApprovalReq"/>
-                <End Multiplicity="0..1" Role="To_Action" Type="Approvals.ApproveAction"/>
+            <EntityType Name="SocialChannel">
+                <Key>
+                    <PropertyRef Name="SocialChannelID"/>
+                </Key>
+                <Property Name="SocialChannelID" Nullable="false" Type="Edm.String"/>
+                <Property Name="type" Type="Edm.String"/>
+                <Property Name="user" Type="Edm.String"/>
+                <Property Name="password" Type="Edm.String"/>
+                <NavigationProperty FromRole="From_Social" Name="ContentSet" Relationship="Content.SocialChannelContent" ToRole="To_Content"/>
+            </EntityType>
+            <EntityType Name="Image">
+                <Key>
+                    <PropertyRef Name="ImageID"/>
+                </Key>
+                <Property Name="ImageID" Nullable="false" Type="Edm.Int32"/>
+                <Property Name="src" Type="Edm.String"/>
+                <Property Name="width" Type="Edm.String"/>
+                <Property Name="height" Type="Edm.String"/>
+                <Property Name="alignment" Type="Edm.String"/>
+                <Property Name="text" Type="Edm.String"/>
+                <NavigationProperty FromRole="To_Image" Name="Content" Relationship="Content.ContentImage" ToRole="From_Content"/>
+            </EntityType>
+            <Association Name="TaxonomyTerm">
+                <End Multiplicity="1" Role="From_Taxonomy" Type="Content.Taxonomy"/>
+                <End Multiplicity="*" Role="To_Term" Type="Content.Term"/>
             </Association>
-            <Association Name="ApproveActionApprovalResp">
-                <End Multiplicity="1" Role="From_Action" Type="Approvals.ApproveAction"/>
-                <End Multiplicity="0..1" Role="To_ApprovalResp" Type="Approvals.ApprovalResp"/>
+            <Association Name="SocialChannelContent">
+                <End Multiplicity="1" Role="From_Social" Type="Content.SocialChannel"/>
+                <End Multiplicity="*" Role="To_Content" Type="Content.Content"/>
+            </Association>
+            <Association Name="ContentTerm">
+                <End Multiplicity="1" Role="From_Content" Type="Content.Content"/>
+                <End Multiplicity="*" Role="To_Term" Type="Content.Term"/>
+            </Association>
+            <Association Name="ContentImage">
+                <End Multiplicity="1" Role="From_Content" Type="Content.Content"/>
+                <End Multiplicity="*" Role="To_Image" Type="Content.Image"/>
+            </Association>
+            <Association Name="TermTerm">
+                <End Multiplicity="1" Role="From_Term" Type="Content.Term"/>
+                <End Multiplicity="*" Role="To_Term" Type="Content.Term"/>
+            </Association>
+            <Association Name="ContentContent">
+                <End Multiplicity="1" Role="From_Content" Type="Content.Content"/>
+                <End Multiplicity="*" Role="To_Content" Type="Content.Content"/>
             </Association>
             <EntityContainer Name="default" m:IsDefaultEntityContainer="true">
-                <EntitySet EntityType="Approvals.ApprovalReq" Name="ApprovalReqSet"/>
-                <EntitySet EntityType="Approvals.ApprovalResp" Name="ApprovalRespSet"/>
-                <EntitySet EntityType="Approvals.ApproveAction" Name="ApproveActionSet"/>
-                <AssociationSet Association="Approvals.ApprovalReqApproveAction" Name="ApprovalReqApproveActionSet">
-                    <End EntitySet="ApprovalReqSet" Role="From_ApprovalReq"/>
-                    <End EntitySet="ApproveActionSet" Role="To_Action"/>
+                <EntitySet EntityType="Content.Taxonomy" Name="TaxonomySet"/>
+                <EntitySet EntityType="Content.Term" Name="TermSet"/>
+                <EntitySet EntityType="Content.Content" Name="ContentSet"/>
+                <EntitySet EntityType="Content.SocialChannel" Name="SocialChannelSet"/>
+                <EntitySet EntityType="Content.Image" Name="ImageSet"/>
+                <AssociationSet Association="Content.TaxonomyTerm" Name="TaxonomyTermSet">
+                    <End EntitySet="TaxonomySet" Role="From_Taxonomy"/>
+                    <End EntitySet="TermSet" Role="To_Term"/>
                 </AssociationSet>
-                <AssociationSet Association="Approvals.ApproveActionApprovalResp" Name="ApproveActionApprovalRespSet">
-                    <End EntitySet="ApproveActionSet" Role="From_Action"/>
-                    <End EntitySet="ApprovalRespSet" Role="To_ApprovalResp"/>
+                <AssociationSet Association="Content.SocialChannelContent" Name="SocialChannelContentSet">
+                    <End EntitySet="SocialChannelSet" Role="From_Social"/>
+                    <End EntitySet="ContentSet" Role="To_Content"/>
+                </AssociationSet>
+                <AssociationSet Association="Content.ContentTerm" Name="ContentTermSet">
+                    <End EntitySet="ContentSet" Role="From_Content"/>
+                    <End EntitySet="TermSet" Role="To_Term"/>
+                </AssociationSet>
+                <AssociationSet Association="Content.ContentImage" Name="ContentImageSet">
+                    <End EntitySet="ContentSet" Role="From_Content"/>
+                    <End EntitySet="ImageSet" Role="To_Image"/>
+                </AssociationSet>
+                <AssociationSet Association="Content.TermTerm" Name="TermTermSet">
+                    <End EntitySet="TermSet" Role="From_Term"/>
+                    <End EntitySet="TermSet" Role="To_Term"/>
+                </AssociationSet>
+                <AssociationSet Association="Content.ContentContent" Name="ContentContentSet">
+                    <End EntitySet="ContentSet" Role="From_Content"/>
+                    <End EntitySet="ContentSet" Role="To_Content"/>
                 </AssociationSet>
             </EntityContainer>
         </Schema>

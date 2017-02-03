@@ -1,0 +1,21 @@
+[{
+	"TermID": 1,
+	"name": "BeHealthy Magazine",
+	"active": true,
+	"parent": "0"
+}, {
+	"TermID": 2,
+	"name": "BeHealthy 2017",
+	"parent": "1",
+	"active": true
+}, {
+	"TermID": 3,
+	"name": "BeHealthy Jan 2017",
+	"parent": "2",
+	"active": true
+}, {
+	"TermID": 4,
+	"name": "BeHealthy Feb 2017",
+	"parent": "2",
+	"active": false
+}, {}]

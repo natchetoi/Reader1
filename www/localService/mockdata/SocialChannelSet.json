@@ -1,0 +1,11 @@
+[{
+	"SocialChannelID": "1",
+	"type": "fb",
+	"user": "user",
+	"password": "12345"
+}, {
+	"SocialChannelID": "2",
+	"type": "tw",
+	"user": "user",
+	"password": "password"
+}]
