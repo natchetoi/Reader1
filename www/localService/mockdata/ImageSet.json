@@ -1,6 +1,34 @@
 [{
 	"ImageID": 1,
-	"src": "pic1.jpg",
+	"src": "img/1.jpg",
+	"width": "200",
+	"height": "300",
+	"alignment": "l",
+	"text": "Frontpage"
+}, {
+	"ImageID": 2,
+	"src": "img/2.jpg",
+	"width": "200",
+	"height": "300",
+	"alignment": "l",
+	"text": "Frontpage"
+}, {
+	"ImageID": 3,
+	"src": "img/3.jpg",
+	"width": "200",
+	"height": "300",
+	"alignment": "l",
+	"text": "Frontpage"
+}, {
+	"ImageID": 4,
+	"src": "img/4.jpg",
+	"width": "200",
+	"height": "300",
+	"alignment": "l",
+	"text": "Frontpage"
+}, {
+	"ImageID": 5,
+	"src": "img/5.jpg",
 	"width": "200",
 	"height": "300",
 	"alignment": "l",

@@ -3,8 +3,11 @@
 	"name": "Issues"
 }, {
 	"TaxonomyID": "2",
-	"name": "Topics"
+	"name": "Geography"
 }, {
 	"TaxonomyID": "3",
-	"name": "Geography"
+	"name": "Type"
+}, {
+	"TaxonomyID": 4,
+	"name": "Topics"
 }]
