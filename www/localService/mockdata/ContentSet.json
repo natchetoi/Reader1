@@ -4,14 +4,36 @@
 	"type": "art",
 	"publishDate": "/Date(1486184400000)/",
 	"expireDate": "/Date(1490155200000)/",
-	"body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+	"body": "<h1>Lorem Ipsum </h1><p>Lorem Ipsum is simply <b>dummy text</b> of the printing and typesetting industry. <img src='img/1.jpg' />Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>",
+	"ImageSet" : [
+		{"src" :"img/1.jpg"}
+	], 
+	"TermSet" : [
+		{"TermID": 4}, 
+	    {"TermID": 108},
+	    {"TermID": 201},
+	    {"TermID": 302}
+	 ]
 }, {
 	"ContentID": 2,
 	"title": "Album1",
 	"type": "alb",
 	"publishDate": "/Date(1486184400000)/",
 	"expireDate": "/Date(1495771200000)/",
-	"body": "Toronto and Canada views "
+	"body": "Toronto and Canada views ", 
+	"ImageSet" : [
+		{"src" :"img/1.jpg"},
+		{"src" :"img/2.jpg"},
+		{"src" :"img/3.jpg"},
+		{"src" :"img/4.jpg"},
+		{"src" :"img/5.jpg"}
+	],
+	"TermSet" : [
+		{"TermID": 2}, 
+	    {"TermID": 108},
+	    {"TermID": 201},
+	    {"TermID": 302}
+	 ]
 }, {
 	"ContentID": 3,
 	"title": "Ad1",
