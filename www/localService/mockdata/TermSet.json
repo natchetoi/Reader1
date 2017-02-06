@@ -22,7 +22,7 @@
 				"parent": "2",
 				"active": true,
 				"taxonomyID": 1
-			}, {
+			},  {
 				"TermID": 4,
 				"name": "Feb 2017",
 				"parent": "2",
