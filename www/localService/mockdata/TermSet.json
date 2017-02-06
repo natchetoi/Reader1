@@ -1,151 +1,179 @@
 [{
-	"TermID": 1,
-	"name": "BeHealthy Magazine",
+	"TermID": 0,
+	"name": "My Subscriptions",
 	"active": true,
 	"parent": "0",
-	"taxonomyID": 1
-}, {
-	"TermID": 2,
-	"name": "BeHealthy 2017",
-	"parent": "1",
-	"active": true,
-	"taxonomyID": 1
-}, {
-	"TermID": 3,
-	"name": "BeHealthy Jan 2017",
-	"parent": "2",
-	"active": true,
-	"taxonomyID": 1
-}, {
-	"TermID": 4,
-	"name": "BeHealthy Feb 2017",
-	"parent": "2",
-	"active": true,
-	"taxonomyID": 1
+	"taxonomyID": 1,
+	"items": [{
+		"TermID": 1,
+		"name": "BeHealthy Magazine",
+		"active": true,
+		"parent": "0",
+		"taxonomyID": 1,
+		"items": [{
+			"TermID": 2,
+			"name": "2017",
+			"parent": "1",
+			"active": true,
+			"taxonomyID": 1,
+			"items": [{
+				"TermID": 3,
+				"name": "Jan 2017",
+				"parent": "2",
+				"active": true,
+				"taxonomyID": 1
+			}, {
+				"TermID": 4,
+				"name": "Feb 2017",
+				"parent": "2",
+				"active": true,
+				"taxonomyID": 1
+			}]
+		}]
+
+	}]
 }, {
 	"TermID": 101,
 	"taxonomyID": 2,
 	"active": true,
 	"name": "World",
-	"parent": "0"
-}, {
-	"TermID": 102,
-	"taxonomyID": 2,
-	"active": true,
-	"name": "North America",
-	"parent": "101"
-}, {
-	"TermID": 103,
-	"name": "Europe",
-	"active": true,
-	"taxonomyID": 2,
-	"parent": "101"
-}, {
-	"TermID": 104,
-	"name": "Asia",
-	"active": true,
-	"taxonomyID": 2,
-	"parent": "101"
-}, {
-	"TermID": 105,
-	"name": "South America",
-	"active": true,
-	"taxonomyID": 2,
-	"parent": "101"
-}, {
-	"TermID": 106,
-	"name": "Australia",
-	"active": true,
-	"taxonomyID": 2,
-	"parent": "101"
-}, {
-	"TermID": 107,
-	"name": "Africa",
-	"active": true,
-	"taxonomyID": 2,
-	"parent": "101"
-}, {
-	"TermID": 108,
-	"name": "Canada",
-	"parent": "102",
-	"active": true,
-	"taxonomyID": 2
-}, {
-	"parent": "102",
-	"TermID": 109,
-	"name": "United States",
-	"taxonomyID": 2,
-	"active": true
-}, {
-	"parent": "102",
-	"TermID": 110,
-	"name": "Mexico",
-	"taxonomyID": 2,
-	"active": true
-}, {
-	"parent": "103",
-	"taxonomyID": 2,
-	"active": true,
-	"TermID": 111,
-	"name": "France"
-}, {
-	"TermID": 112,
-	"name": "Germany",
-	"parent": "103",
-	"active": true,
-	"taxonomyID": 2
-}, {
-	"TermID": 114,
-	"name": "Spain",
-	"parent": "103",
-	"active": true,
-	"taxonomyID": 2
+	"parent": "0",
+	"items": [{
+		"TermID": 102,
+		"taxonomyID": 2,
+		"active": true,
+		"name": "North America",
+		"parent": "101",
+		"items": [{
+			"TermID": 108,
+			"name": "Canada",
+			"parent": "102",
+			"active": true,
+			"taxonomyID": 2
+		}, {
+			"parent": "102",
+			"TermID": 109,
+			"name": "United States",
+			"taxonomyID": 2,
+			"active": true
+		}, {
+			"parent": "102",
+			"TermID": 110,
+			"name": "Mexico",
+			"taxonomyID": 2,
+			"active": true
+		}]
+	}, {
+		"TermID": 103,
+		"name": "Europe",
+		"active": true,
+		"taxonomyID": 2,
+		"parent": "101",
+		"items": [{
+			"parent": "103",
+			"taxonomyID": 2,
+			"active": true,
+			"TermID": 111,
+			"name": "France"
+		}, {
+			"TermID": 112,
+			"name": "Germany",
+			"parent": "103",
+			"active": true,
+			"taxonomyID": 2
+		}, {
+			"TermID": 114,
+			"name": "Spain",
+			"parent": "103",
+			"active": true,
+			"taxonomyID": 2
+		}]
+	}, {
+		"TermID": 104,
+		"name": "Asia",
+		"active": true,
+		"taxonomyID": 2,
+		"parent": "101"
+	}, {
+		"TermID": 105,
+		"name": "South America",
+		"active": true,
+		"taxonomyID": 2,
+		"parent": "101"
+	}, {
+		"TermID": 106,
+		"name": "Australia",
+		"active": true,
+		"taxonomyID": 2,
+		"parent": "101"
+	}, {
+		"TermID": 107,
+		"name": "Africa",
+		"active": true,
+		"taxonomyID": 2,
+		"parent": "101"
+	}]
 }, {
 	"TermID": 200,
-	"name": "Newspaper",
+	"name": "Publication type",
 	"parent": "0",
 	"active": true,
-	"taxonomyID": 3
-}, {
-	"TermID": 201,
-	"name": "Magazine",
-	"parent": "0",
-	"active": true,
-	"taxonomyID": 3
-}, {
-	"active": true,
 	"taxonomyID": 3,
-	"name": "Radio",
-	"TermID": 202,
-	"parent": "0"
-}, {
-	"active": true,
-	"taxonomyID": 3,
-	"name": "TV",
-	"TermID": 203,
-	"parent": "0"
-}, {
-	"active": true,
-	"TermID": 300,
-	"taxonomyID": 4,
-	"name": "Community",
-	"parent": "0"
+	"items": [{
+
+		"TermID": 201,
+		"name": "Newspaper",
+		"parent": "0",
+		"active": true,
+		"taxonomyID": 3
+	}, {
+		"TermID": 202,
+		"name": "Magazine",
+		"parent": "0",
+		"active": true,
+		"taxonomyID": 3
+	}, {
+		"active": true,
+		"taxonomyID": 3,
+		"name": "Radio",
+		"TermID": 203,
+		"parent": "0"
+	}, {
+		"active": true,
+		"taxonomyID": 3,
+		"name": "TV",
+		"TermID": 204,
+		"parent": "0"
+	}]
 }, {
 	"active": true,
 	"TermID": 301,
 	"taxonomyID": 4,
-	"name": "News",
-	"parent": "300"
-}, {
-	"name": "Health",
-	"TermID": 302,
-	"parent": "300",
-	"active": true,
-	"taxonomyID": 4
-}, {
-	"name": "Culture",
-	"TermID": 303,
-	"parent": "300",
-	"active": true,
-	"taxonomyID": 4
+	"name": "Topic",
+	"parent": "0",
+	"items": [{
+		"active": true,
+		"TermID": 301,
+		"taxonomyID": 4,
+		"name": "Community",
+		"parent": "300"
+	}, {
+		"active": true,
+		"TermID": 302,
+		"taxonomyID": 4,
+		"name": "News",
+		"parent": "303"
+	}, {
+		"name": "Health",
+		"TermID": 304,
+		"parent": "300",
+		"active": true,
+		"taxonomyID": 4
+	}, {
+		"name": "Culture",
+		"TermID": 305,
+		"parent": "300",
+		"active": true,
+		"taxonomyID": 4
+	}]
 }]
