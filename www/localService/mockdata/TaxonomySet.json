@@ -1,13 +1,13 @@
 [{
 	"TaxonomyID": "1",
-	"name": "Issues"
+	"name": "My Subscriptions"
 }, {
 	"TaxonomyID": "2",
 	"name": "Geography"
 }, {
 	"TaxonomyID": "3",
-	"name": "Type"
+	"name": "Publication type"
 }, {
 	"TaxonomyID": 4,
-	"name": "Topics"
+	"name": "Publication Topics"
 }]

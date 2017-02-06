@@ -54,6 +54,28 @@ sap.ui.controller("Reader1.view.Main", {
 	 */
 		onExit: function() {
 	
+		},
+		
+	addTerms: function( node, items ) {
+		
+		for(var i=0; i< items.size; i++) {
+			var text = items[i].name;
+			var icon = 'sap-icon://employee';
+			var item = new sap.tnt.NavigationListItem({
+					'text': text,
+					'icon': icon
+				});
+			node.addItem(item);	
 		}
+	},
+	
+	setNavList: function(taxonomyId) {
+		
+		var navList = new sap.tnt.NavigationList({
+			expanded: true,
+			items: [] });
+			
+		
+	}
 
 });
