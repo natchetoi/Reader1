@@ -1,6 +1,7 @@
-<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" 
-			xmlns:html="http://www.w3.org/1999/xhtml" 
-			xmlns="sap.m" xmlns="sap.tnt"   controllerName="Reader1.view.Main">
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+           xmlns:html="http://www.w3.org/1999/xhtml"
+           xmlns="sap.m" xmlns:tnt="sap.tnt"
+           controllerName="Reader1.view.Main">
     <Page title="Title" showNavButton="false">
         <customHeader>
             <Bar>

@@ -50,9 +50,9 @@ sap.ui.controller("Reader1.view.Main", {
     onExit: function () {
 
     },
-/***************************************************************************/
+    /***************************************************************************/
 
-    addTerms: function(node, items) {
+    addTerms: function (node, items) {
 
         for (var i = 0; i < items.size; i++) {
             var name = items[i].name;
@@ -63,16 +63,16 @@ sap.ui.controller("Reader1.view.Main", {
             });
             node.addItem(item);
         }
-    }
+    },
 
-    setNavList: function(taxonomyName, taxonomyId) {
-            var navList = new sap.tnt.NavigationListItem({
-                // textDirection: sap.ui.core.TextDirection.RTL,
-                'text' : taxonomyName,
-                'expanded' : true,
-                'icon' : 'sap-icon://',
-                'items' : [ ]
-            });
+    setNavList: function (taxonomyName, taxonomyId) {
+        var navList = new sap.tnt.NavigationListItem({
+            // textDirection: sap.ui.core.TextDirection.RTL,
+            'text': taxonomyName,
+            'expanded': true,
+            'icon': 'sap-icon://',
+            'items': []
+        });
     }
 
 
