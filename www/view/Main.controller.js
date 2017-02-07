@@ -39,7 +39,7 @@ sap.ui.controller("Reader1.view.Main", {
      */
     onAfterRendering: function () {
         var self = this;
-        this.showAlbumFragment(self);
+        //this.showAlbumFragment(self);
         // this.showHtmlFragment(self);
     },
 
@@ -73,7 +73,12 @@ sap.ui.controller("Reader1.view.Main", {
             'icon': 'sap-icon://',
             'items': []
         });
+    },
+
+    onToggleMenu: function(){
+        var navigationList = this.getView().byId('contentMenu');
+        var expanded = !navigationList.getExpanded();
+
+        navigationList.setExpanded(expanded);
     }
-
-
 });

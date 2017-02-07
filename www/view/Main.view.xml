@@ -6,22 +6,8 @@
         <customHeader>
             <Bar>
                 <contentLeft>
-                    <MenuButton icon="sap-icon://menu2">
-                        <menu>
-                            <Menu>
-                                <items>
-                                    <MenuItem text="Category1"/>
-                                    <MenuItem text="Category2">
-                                        <items>
-                                            <MenuItem text="Article1"/>
-                                            <MenuItem text="Article2"/>
-                                        </items>
-                                    </MenuItem>
-                                </items>
-                            </Menu>
-                        </menu>
-                    </MenuButton>
-
+                    <Button icon="sap-icon://menu2"
+                              press="onToggleMenu" />
                 </contentLeft>
                 <contentMiddle>
                     <Text text="Reader"/>
@@ -41,6 +27,32 @@
             </Bar>
         </customHeader>
         <content>
+            <tnt:NavigationList id="contentMenu" expanded="false">
+                <tnt:NavigationListItem
+                        text="Item 1"
+                        icon="sap-icon://employee">
+                    <tnt:NavigationListItem text="Sub Item 1">
+                    </tnt:NavigationListItem>
+                    <tnt:NavigationListItem text="Sub Item 2">
+                    </tnt:NavigationListItem>
+                    <tnt:NavigationListItem text="Sub Item 3">
+                    </tnt:NavigationListItem>
+                    <tnt:NavigationListItem text="Sub Item 4">
+                    </tnt:NavigationListItem>
+                </tnt:NavigationListItem>
+                <tnt:NavigationListItem
+                        text="Item 2"
+                        icon="sap-icon://building">
+                    <tnt:NavigationListItem text="Sub Item 1">
+                    </tnt:NavigationListItem>
+                    <tnt:NavigationListItem text="Sub Item 2">
+                    </tnt:NavigationListItem>
+                    <tnt:NavigationListItem text="Sub Item 3">
+                    </tnt:NavigationListItem>
+                    <tnt:NavigationListItem text="Sub Item 4">
+                    </tnt:NavigationListItem>
+                </tnt:NavigationListItem>
+            </tnt:NavigationList>
             <Panel id="_panelContent"></Panel>
         </content>
         <footer>
