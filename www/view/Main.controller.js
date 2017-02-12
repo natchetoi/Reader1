@@ -1,14 +1,64 @@
+jQuery.sap.require("libs.linq");
 sap.ui.controller("Reader1.view.Main", {
     albumFragment: null,
     htmlFragment: null,
+    rootMenuItems: null,
+    menuControl: null,
 
+    initMenu: function () {
+        var self = this;
+        if (self.rootMenuItems !== null) return;
+
+        var url = "localService/mockdata/TermSet.json";
+        jQuery.ajax({
+            url: url,
+            async: true,
+            success: function (data) {
+                self.rootMenuItems = Enumerable.from(data)
+                    .orderBy(function (x) {
+                        return x.name;
+                    })
+                    .toArray();
+                self.createMenu();
+            },
+        });
+    },
+
+    createMenu: function () {
+        var self = this;
+        var navigationList = self.getView().byId("contentMenu");
+
+        for(var i=0; i<self.rootMenuItems.length; i++)
+        {
+            var item = new sap.tnt.NavigationListItem();
+            item.setText(self.rootMenuItems[i].name);
+            item.setIcon("sap-icon://feed");
+            item.setBindingContext(self.rootMenuItems[i]);
+            navigationList.addItem(item);
+
+            if(self.rootMenuItems[i].items !== undefined){
+                self.addChildren(item, self.rootMenuItems[i].items);
+            }
+        }
+    },
+
+    addChildren: function (parentItem, childItems) {
+        for(var i=0; i<childItems.length; i++){
+            var item = new sap.tnt.NavigationListItem();
+            item.setText(childItems[i].name);
+            item.setBindingContext(childItems[i]);
+
+            parentItem.addItem(item);
+        }
+    },
     /**
      * Called when a controller is instantiated and its View controls (if available) are already created.
      * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
      * @memberOf Reader1.view.Main
      */
     onInit: function () {
-
+        var self = this;
+        self.initMenu();
     },
 
     /**
@@ -75,7 +125,7 @@ sap.ui.controller("Reader1.view.Main", {
         });
     },
 
-    onToggleMenu: function(){
+    onToggleMenu: function () {
         var navigationList = this.getView().byId('contentMenu');
         var expanded = !navigationList.getExpanded();
 

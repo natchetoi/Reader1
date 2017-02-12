@@ -28,30 +28,6 @@
         </customHeader>
         <content>
             <tnt:NavigationList id="contentMenu" expanded="false">
-                <tnt:NavigationListItem
-                        text="Item 1"
-                        icon="sap-icon://employee">
-                    <tnt:NavigationListItem text="Sub Item 1">
-                    </tnt:NavigationListItem>
-                    <tnt:NavigationListItem text="Sub Item 2">
-                    </tnt:NavigationListItem>
-                    <tnt:NavigationListItem text="Sub Item 3">
-                    </tnt:NavigationListItem>
-                    <tnt:NavigationListItem text="Sub Item 4">
-                    </tnt:NavigationListItem>
-                </tnt:NavigationListItem>
-                <tnt:NavigationListItem
-                        text="Item 2"
-                        icon="sap-icon://building">
-                    <tnt:NavigationListItem text="Sub Item 1">
-                    </tnt:NavigationListItem>
-                    <tnt:NavigationListItem text="Sub Item 2">
-                    </tnt:NavigationListItem>
-                    <tnt:NavigationListItem text="Sub Item 3">
-                    </tnt:NavigationListItem>
-                    <tnt:NavigationListItem text="Sub Item 4">
-                    </tnt:NavigationListItem>
-                </tnt:NavigationListItem>
             </tnt:NavigationList>
             <Panel id="_panelContent"></Panel>
         </content>

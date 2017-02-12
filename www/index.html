@@ -1,62 +1,62 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>
 
-		<script src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
-				id="sap-ui-bootstrap"
-				data-sap-ui-libs="sap.m"
-				data-sap-ui-resourceroots='{"Reader1": "./"}'
-				data-sap-ui-theme="sap_bluecrystal">
-		</script>
-		<!-- only load the mobile lib "sap.m" and the "sap_bluecrystal" theme -->
-		
-		<script type="text/javascript" src="cordova.js"></script>
-		<script type="text/javascript">
-		  /*=====================================================================
-		   The following onError function is used to trap any errors that occur
-		   while the application is running. Cordova fails silently whenever it
-		   encounters an error in HTML or JavaScript code. So, with that being
-		   the case, developers cannot tell when/why their applications are
-		   failing. Any code error will cause the function to fire and display
-		   the error in an alert dialog.
-		   ======================================================================*/
-		  window.onerror = function(msg, url, line) {
-			var idx = url.lastIndexOf("/");
-			if (idx > -1) {
-			  url = url.substring(idx + 1);
-			}
-			alert("ERROR in " + url + " (line #" + line + ")\n" + msg);
-			console.error(msg);
-			return false;
-		  };
-		</script>
+    <script src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.m"
+            data-sap-ui-resourceroots='{"Reader1": "./"}'
+            data-sap-ui-theme="sap_bluecrystal">
+    </script>
+    <!-- only load the mobile lib "sap.m" and the "sap_bluecrystal" theme -->
 
-		<script>
-				sap.ui.localResources("view");
-				var app = new sap.m.App({initialPage:"idMain"});
-				
-				function startApp(context) {
-				
-					var page = sap.ui.view({id:"idMain", viewName:"Reader1.view.Main", type:sap.ui.core.mvc.ViewType.XML  });
-					app.addPage(page);
-					app.placeAt("content");
-				}
-				
-				window.onload = function() {
-					if (window.cordova) {
-						jQuery.sap.require("Reader1.devapp");
-						Reader1.devapp.initialize();
-					}
-					else {
-						startApp();
-					}
-				}
-		</script>
-		
-	</head>
-	<body class="sapUiBody" role="application">
-		<div id="content"></div>
-	</body>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript">
+        /*=====================================================================
+         The following onError function is used to trap any errors that occur
+         while the application is running. Cordova fails silently whenever it
+         encounters an error in HTML or JavaScript code. So, with that being
+         the case, developers cannot tell when/why their applications are
+         failing. Any code error will cause the function to fire and display
+         the error in an alert dialog.
+         ======================================================================*/
+        window.onerror = function (msg, url, line) {
+            var idx = url.lastIndexOf("/");
+            if (idx > -1) {
+                url = url.substring(idx + 1);
+            }
+            alert("ERROR in " + url + " (line #" + line + ")\n" + msg);
+            console.error(msg);
+            return false;
+        };
+    </script>
+
+    <script>
+        sap.ui.localResources("view");
+        var app = new sap.m.App({initialPage: "idMain"});
+
+        function startApp(context) {
+            jQuery.sap.registerModulePath("libs", "/libs/");
+            var page = sap.ui.view({id: "idMain", viewName: "Reader1.view.Main", type: sap.ui.core.mvc.ViewType.XML});
+            app.addPage(page);
+            app.placeAt("content");
+        }
+
+        window.onload = function () {
+            if (window.cordova) {
+                jQuery.sap.require("Reader1.devapp");
+                Reader1.devapp.initialize();
+            }
+            else {
+                startApp();
+            }
+        }
+    </script>
+
+</head>
+<body class="sapUiBody" role="application">
+<div id="content"></div>
+</body>
 </html>
