@@ -1,4 +1,6 @@
-<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+<core:View xmlns:core="sap.ui.core"
+           xmlns:mvc="sap.ui.core.mvc"
+           xmlns:l="sap.ui.layout"
            xmlns:html="http://www.w3.org/1999/xhtml"
            xmlns="sap.m" xmlns:tnt="sap.tnt"
            controllerName="Reader1.view.Main">
@@ -7,7 +9,7 @@
             <Bar>
                 <contentLeft>
                     <Button icon="sap-icon://menu2"
-                              press="onToggleMenu" />
+                            press="onToggleMenu"/>
                 </contentLeft>
                 <contentMiddle>
                     <Text text="Reader"/>
@@ -27,9 +29,16 @@
             </Bar>
         </customHeader>
         <content>
-            <tnt:NavigationList id="contentMenu" expanded="false">
-            </tnt:NavigationList>
-            <Panel id="_panelContent"></Panel>
+
+            <l:FixFlex vertical="false">
+                <l:fixContent>
+                    <tnt:NavigationList id="contentMenu" expanded="false" itemSelect="onMenuItemSelected">
+                    </tnt:NavigationList>
+                </l:fixContent>
+                <l:flexContent>
+                    <Panel id="_panelContent" width="100%" class="sapUiNoContentPadding"></Panel>
+                </l:flexContent>
+            </l:FixFlex>
         </content>
         <footer>
             <Bar>

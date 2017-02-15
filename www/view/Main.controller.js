@@ -4,6 +4,7 @@ sap.ui.controller("Reader1.view.Main", {
     htmlFragment: null,
     rootMenuItems: null,
     menuControl: null,
+    termsListControl: null,
 
     initMenu: function () {
         var self = this;
@@ -51,6 +52,37 @@ sap.ui.controller("Reader1.view.Main", {
             parentItem.addItem(item);
         }
     },
+
+    onMenuItemSelected: function(item){
+        var self = this;
+        var selectedTerm = item.getParameters().item.getBindingContext();
+        if(selectedTerm !== undefined && selectedTerm.items !== undefined){
+            self.showListItems(selectedTerm);
+        }
+    },
+
+    showListItems: function(term){
+        var self = this;
+        if(self.termsListControl === null){
+            self.termsListControl = sap.ui.xmlfragment(self.getView().getId(), "Reader1.view.TermsList", this);
+            self.getView().addDependent(self.termsListControl);
+            self.byId("_panelContent").removeAllContent();
+            self.byId("_panelContent").addContent(self.termsListControl);
+        }
+        var termsModel = new sap.ui.model.json.JSONModel();
+        termsModel.setData(term);
+        self.getView().setModel(termsModel, "term");
+        self.setMenuExpanded(false);
+    },
+
+    onTermSelected: function(item){
+        var self = this;
+        var selectedItem = item.getSource().getBindingContext("term").getObject();
+
+        if(selectedItem !== undefined && selectedItem.items !== undefined){
+            self.showListItems(selectedItem);
+        }
+    },
     /**
      * Called when a controller is instantiated and its View controls (if available) are already created.
      * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -76,7 +108,10 @@ sap.ui.controller("Reader1.view.Main", {
             self.getView().addDependent(self.htmlFragment);
             self.byId('_panelContent').addContent(self.htmlFragment);
         }
-    }, showAlbumFragment: function (self) {
+    },
+
+    showAlbumFragment: function () {
+        var self = this;
         if (self.albumFragment === null) {
             self.albumFragment = sap.ui.xmlfragment(self.getView().getId(), "Reader1.view.Album");
             self.getView().addDependent(self.albumFragment);
@@ -128,7 +163,17 @@ sap.ui.controller("Reader1.view.Main", {
     onToggleMenu: function () {
         var navigationList = this.getView().byId('contentMenu');
         var expanded = !navigationList.getExpanded();
-
+        this.setMenuExpanded(expanded);
+    },
+    setMenuExpanded: function (expanded) {
+        var navigationList = this.getView().byId('contentMenu');
         navigationList.setExpanded(expanded);
+    },
+
+    onBtnListBackClick: function(){
+        var self = this;
+        var currentTerm = self.getView().getModel("term");
+
     }
+
 });

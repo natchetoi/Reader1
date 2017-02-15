@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <List
+            id="termsList"
+            items="{term>/items}"
+            includeItemInSelection="true">
+        <headerToolbar>
+            <Toolbar>
+                <Button
+                        icon="sap-icon://arrow-left"
+                        press="onBtnListBackClick"/>
+                <Title text="{term>/name}"/>
+
+            </Toolbar>
+        </headerToolbar>
+        <StandardListItem
+                type="Active"
+                title="{term>name}"
+                icon="sap-icon://newspaper"
+                press="onTermSelected"/>
+    </List>
+</core:FragmentDefinition>
