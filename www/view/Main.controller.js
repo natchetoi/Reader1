@@ -2,24 +2,28 @@ jQuery.sap.require("libs.linq");
 sap.ui.controller("Reader1.view.Main", {
     albumFragment: null,
     htmlFragment: null,
+    menuItems: null,
     rootMenuItems: null,
-    menuControl: null,
-    termsListControl: null,
+    termsListFragment: null,
+
 
     initMenu: function () {
         var self = this;
-        if (self.rootMenuItems !== null) return;
+        if (self.menuItems !== null) return;
 
         var url = "localService/mockdata/TermSet.json";
         jQuery.ajax({
             url: url,
             async: true,
             success: function (data) {
-                self.rootMenuItems = Enumerable.from(data)
-                    .orderBy(function (x) {
-                        return x.name;
-                    })
-                    .toArray();
+                self.menuItems = [];
+                self.rootMenuItems = [];
+
+                var rootItems = Enumerable.from(data).toArray();
+                for (var i = 0; i < rootItems.length; i++) {
+                    self.saveMenuItem(rootItems[i]);
+                    self.rootMenuItems.push(rootItems[i]);
+                }
                 self.createMenu();
             },
         });
@@ -29,22 +33,35 @@ sap.ui.controller("Reader1.view.Main", {
         var self = this;
         var navigationList = self.getView().byId("contentMenu");
 
-        for(var i=0; i<self.rootMenuItems.length; i++)
-        {
+        var rootMenuItems = self.rootMenuItems;
+
+        for (var i = 0; i < rootMenuItems.length; i++) {
             var item = new sap.tnt.NavigationListItem();
-            item.setText(self.rootMenuItems[i].name);
+            item.setText(rootMenuItems[i].name);
             item.setIcon("sap-icon://feed");
-            item.setBindingContext(self.rootMenuItems[i]);
+            item.setBindingContext(rootMenuItems[i]);
             navigationList.addItem(item);
 
-            if(self.rootMenuItems[i].items !== undefined){
-                self.addChildren(item, self.rootMenuItems[i].items);
+            if (rootMenuItems[i].items !== undefined) {
+                self.addChildrenMenuItems(item, rootMenuItems[i].items);
             }
         }
     },
 
-    addChildren: function (parentItem, childItems) {
-        for(var i=0; i<childItems.length; i++){
+    saveMenuItem: function (item) {
+        var self = this;
+
+        self.menuItems.push(item);
+        if (item.items !== undefined) {
+            for (var i = 0; i < item.items.length; i++) {
+                self.saveMenuItem(item.items[i]);
+            }
+        }
+
+    },
+
+    addChildrenMenuItems: function (parentItem, childItems) {
+        for (var i = 0; i < childItems.length; i++) {
             var item = new sap.tnt.NavigationListItem();
             item.setText(childItems[i].name);
             item.setBindingContext(childItems[i]);
@@ -53,21 +70,21 @@ sap.ui.controller("Reader1.view.Main", {
         }
     },
 
-    onMenuItemSelected: function(item){
+    onMenuItemSelected: function (item) {
         var self = this;
         var selectedTerm = item.getParameters().item.getBindingContext();
-        if(selectedTerm !== undefined && selectedTerm.items !== undefined){
-            self.showListItems(selectedTerm);
+        if (selectedTerm !== undefined && selectedTerm.items !== undefined) {
+            self.showReadtems(selectedTerm);
         }
     },
 
-    showListItems: function(term){
+    showReadtems: function (term) {
         var self = this;
-        if(self.termsListControl === null){
-            self.termsListControl = sap.ui.xmlfragment(self.getView().getId(), "Reader1.view.TermsList", this);
-            self.getView().addDependent(self.termsListControl);
+        if (self.termsListFragment === null) {
+            self.termsListFragment = sap.ui.xmlfragment(self.getView().getId(), "Reader1.view.TermsList", this);
+            self.getView().addDependent(self.termsListFragment);
             self.byId("_panelContent").removeAllContent();
-            self.byId("_panelContent").addContent(self.termsListControl);
+            self.byId("_panelContent").addContent(self.termsListFragment);
         }
         var termsModel = new sap.ui.model.json.JSONModel();
         termsModel.setData(term);
@@ -75,19 +92,15 @@ sap.ui.controller("Reader1.view.Main", {
         self.setMenuExpanded(false);
     },
 
-    onTermSelected: function(item){
+    onReadListItemSelected: function (item) {
         var self = this;
         var selectedItem = item.getSource().getBindingContext("term").getObject();
 
-        if(selectedItem !== undefined && selectedItem.items !== undefined){
-            self.showListItems(selectedItem);
+        if (selectedItem !== undefined && selectedItem.items !== undefined) {
+            self.showReadtems(selectedItem);
         }
     },
-    /**
-     * Called when a controller is instantiated and its View controls (if available) are already created.
-     * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-     * @memberOf Reader1.view.Main
-     */
+
     onInit: function () {
         var self = this;
         self.initMenu();
@@ -117,47 +130,16 @@ sap.ui.controller("Reader1.view.Main", {
             self.getView().addDependent(self.albumFragment);
             self.byId('_panelContent').addContent(self.albumFragment);
         }
-    }, /**
-     * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
-     * This hook is the same one that SAPUI5 controls get after being rendered.
-     * @memberOf Reader1.view.Main
-     */
+    },
+
     onAfterRendering: function () {
         var self = this;
         //this.showAlbumFragment(self);
         // this.showHtmlFragment(self);
     },
 
-    /**
-     * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
-     * @memberOf Reader1.view.Main
-     */
     onExit: function () {
 
-    },
-    /***************************************************************************/
-
-    addTerms: function (node, items) {
-
-        for (var i = 0; i < items.size; i++) {
-            var name = items[i].name;
-            var icon = 'sap-icon://employee';
-            var item = new sap.tnt.NavigationListItem({
-                'text': name,
-                'icon': icon
-            });
-            node.addItem(item);
-        }
-    },
-
-    setNavList: function (taxonomyName, taxonomyId) {
-        var navList = new sap.tnt.NavigationListItem({
-            // textDirection: sap.ui.core.TextDirection.RTL,
-            'text': taxonomyName,
-            'expanded': true,
-            'icon': 'sap-icon://',
-            'items': []
-        });
     },
 
     onToggleMenu: function () {
@@ -165,15 +147,26 @@ sap.ui.controller("Reader1.view.Main", {
         var expanded = !navigationList.getExpanded();
         this.setMenuExpanded(expanded);
     },
+
     setMenuExpanded: function (expanded) {
         var navigationList = this.getView().byId('contentMenu');
         navigationList.setExpanded(expanded);
     },
 
-    onBtnListBackClick: function(){
+    onBtnListBackClick: function () {
         var self = this;
-        var currentTerm = self.getView().getModel("term");
+        var currentTerm = self.getView().getModel("term").getData();
+        var parentItem = Enumerable.from(self.menuItems)
+            .where(function (x) {
+                return Enumerable.from(x.items)
+                    .any(function (y) {
+                        return y.TermID === currentTerm.TermID;
+                    });
+            })
+            .firstOrDefault();
+        if (parentItem != null) {
+            self.showReadtems(parentItem);
+        }
 
     }
-
 });

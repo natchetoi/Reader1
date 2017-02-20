@@ -15,7 +15,6 @@
         <StandardListItem
                 type="Active"
                 title="{term>name}"
-                icon="sap-icon://newspaper"
-                press="onTermSelected"/>
+                press="onReadListItemSelected"/>
     </List>
 </core:FragmentDefinition>
