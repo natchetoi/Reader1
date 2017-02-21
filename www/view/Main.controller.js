@@ -73,19 +73,49 @@ sap.ui.controller("Reader1.view.Main", {
     onMenuItemSelected: function (item) {
         var self = this;
         var selectedTerm = item.getParameters().item.getBindingContext();
-        if (selectedTerm !== undefined && selectedTerm.items !== undefined) {
-            self.showReadtems(selectedTerm);
+        if (selectedTerm.items !== undefined) {
+            self.showReadItems(selectedTerm);
         }
     },
 
-    showReadtems: function (term) {
+    showContent: function (selectedTerm) {
+        var self = this;
+        var url = "localService/mockdata/ContentSet.json";
+        jQuery.ajax({
+            url: url,
+            async: true,
+            success: function (data) {
+                var contentItem = Enumerable.from(data)
+                    .where(function(x){
+                       return Enumerable.from(x.TermSet).any(function(y){
+                           return y.TermID === selectedTerm.TermID;
+                       });
+                    }).firstOrDefault();
+                if(contentItem != null){
+                    if(contentItem.type === "art"){
+                        self.showArticle(self, contentItem);
+                        return;
+                    }
+                    if(contentItem.type === "alb"){
+                        self.showAlbum(self, contentItem);
+                        return;
+                    }
+                }
+            },
+        });
+    },
+
+
+    showReadItems: function (term) {
         var self = this;
         if (self.termsListFragment === null) {
             self.termsListFragment = sap.ui.xmlfragment(self.getView().getId(), "Reader1.view.TermsList", this);
-            self.getView().addDependent(self.termsListFragment);
-            self.byId("_panelContent").removeAllContent();
-            self.byId("_panelContent").addContent(self.termsListFragment);
         }
+
+        self.byId("_panelContent").removeAllContent();
+        self.getView().addDependent(self.termsListFragment);
+        self.byId("_panelContent").addContent(self.termsListFragment);
+
         var termsModel = new sap.ui.model.json.JSONModel();
         termsModel.setData(term);
         self.getView().setModel(termsModel, "term");
@@ -94,10 +124,12 @@ sap.ui.controller("Reader1.view.Main", {
 
     onReadListItemSelected: function (item) {
         var self = this;
-        var selectedItem = item.getSource().getBindingContext("term").getObject();
+        var selectedTerm = item.getSource().getBindingContext("term").getObject();
 
-        if (selectedItem !== undefined && selectedItem.items !== undefined) {
-            self.showReadtems(selectedItem);
+        if (selectedTerm.items !== undefined) {
+            self.showReadItems(selectedTerm);
+        } else {
+            self.showContent(selectedTerm);
         }
     },
 
@@ -123,19 +155,48 @@ sap.ui.controller("Reader1.view.Main", {
         }
     },
 
-    showAlbumFragment: function () {
-        var self = this;
-        if (self.albumFragment === null) {
-            self.albumFragment = sap.ui.xmlfragment(self.getView().getId(), "Reader1.view.Album");
-            self.getView().addDependent(self.albumFragment);
-            self.byId('_panelContent').addContent(self.albumFragment);
+
+    showArticle: function (context, contentItem) {
+        if (context.htmlFragment === null) {
+            context.htmlFragment = sap.ui.xmlfragment(context.getView().getId(), "Reader1.view.HtmlContent", context);
+            context.getView().addDependent(context.htmlFragment);
+        }
+        context.byId("_panelContent").removeAllContent();
+        context.byId('_panelContent').addContent(context.htmlFragment);
+        context.getView().byId("htmlContent").setContent('<div>' + contentItem.body + '</div>');
+
+        var carousel = context.getView().byId("galleryContent");
+        carousel.removeAllPages();
+        for(var i=0; i<contentItem.ImageSet.length; i++){
+            carousel.addPage(new sap.m.Image({
+                src : contentItem.ImageSet[i].src,
+                alt : "img" + i
+            }));
+        }
+    },
+
+    showAlbum: function (context, contentItem) {
+        if (context.albumFragment === null) {
+            context.albumFragment = sap.ui.xmlfragment(context.getView().getId(), "Reader1.view.Album", context);
+            context.getView().addDependent(context.albumFragment);
+        }
+        context.byId("_panelContent").removeAllContent();
+        context.byId('_panelContent').addContent(context.albumFragment);
+        context.getView().byId("albumHeader").setText(contentItem.body);
+
+
+        var carousel = context.getView().byId("gallery");
+        carousel.removeAllPages();
+        for(var i=0; i<contentItem.ImageSet.length; i++){
+            carousel.addPage(new sap.m.Image({
+                src : contentItem.ImageSet[i].src,
+                alt : "imgalt" + i
+            }));
         }
     },
 
     onAfterRendering: function () {
-        var self = this;
-        //this.showAlbumFragment(self);
-        // this.showHtmlFragment(self);
+
     },
 
     onExit: function () {
@@ -165,7 +226,7 @@ sap.ui.controller("Reader1.view.Main", {
             })
             .firstOrDefault();
         if (parentItem != null) {
-            self.showReadtems(parentItem);
+            self.showReadItems(parentItem);
         }
 
     }

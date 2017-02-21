@@ -29,7 +29,7 @@
 		{"src" :"img/5.jpg"}
 	],
 	"TermSet" : [
-		{"TermID": 2}, 
+		{"TermID": 3},
 	    {"TermID": 108},
 	    {"TermID": 201},
 	    {"TermID": 302}

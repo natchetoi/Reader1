@@ -1,11 +1,7 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-    <Carousel loop="true"  id="gallery">
-        <pages>
-            <Image src="img/1.jpg"/>
-            <Image src="img/2.jpg"/>
-            <Image src="img/3.jpg"/>
-            <Image src="img/4.jpg"/>
-            <Image src="img/5.jpg"/>
-        </pages>
-    </Carousel>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+    <l:VerticalLayout>
+        <Title  id="albumHeader"></Title>
+        <Carousel loop="true"  id="gallery">
+        </Carousel>
+    </l:VerticalLayout>
 </core:FragmentDefinition>
