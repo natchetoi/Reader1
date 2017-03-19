@@ -1,43 +1,44 @@
 [{
-	"ContentID": 1,
-	"title": "Article 1",
-	"type": "art",
+	"nid": 1,
+	"node_title": "Article 1",
+	"node_type": "art",
+	"path":"/node/30",
 	"publishDate": "/Date(1486184400000)/",
 	"expireDate": "/Date(1490155200000)/",
-	"body": "<h1>Lorem Ipsum </h1><p>Lorem Ipsum is simply <b>dummy text</b> of the printing and typesetting industry. <img src='img/1.jpg' />Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>",
-	"ImageSet" : [
-		{"src" :"img/1.jpg"}
+	"body": "<p class=\"large\">Appropriately communicate adaptive imperatives rather than value-added potentialities. Conveniently harness frictionless outsourcing whereas <a href=\"#\">state of the art interfaces</a>.</p>\n<p>Phosfluorescently e-enable adaptive synergy for strategic quality vectors. Continually transform fully tested expertise with competitive technologies. Appropriately communicate adaptive imperatives rather than value-added potentialities. Conveniently harness frictionless outsourcing whereas <a href=\"#\">state of the art interfaces</a>. Quickly enable prospective technology rather than open-source technologies.</p>\n<blockquote><p>Completely parallel task market positioning interfaces through visionary niche markets, proactively incentivize sticky quality vectors before future-proof internal or \"organic\" sources.</p></blockquote>\n<p>Seamlessly procrastinate proactive outsourcing whereas wireless products. Progressively leverage existing 24/365 experiences through timely initiatives. Quickly facilitate frictionless ROI rather than equity invested solutions.</p>\n<h3 class=\"description-title\">Album specifics</h3>\n<p>Compellingly <a href=\"#\">recaptiualize enterprise-wide web-readiness</a> for robust strategic theme areas. Synergistically reconceptualize user-centric functionalities via revolutionary strategic theme areas. Progressively transition out-of-the-box leadership skills rather than top-line and <a href=\"#\">this is a hover link</a>.</p>",
+	"Images" : [
+		{"photo" :"img/1.jpg"}
 	], 
 	"TermSet" : [
-		{"TermID": 4}, 
-	    {"TermID": 108},
-	    {"TermID": 201},
-	    {"TermID": 302}
+		{"term": 4}, 
+	    {"term": 108},
+	    {"term": 201},
+	    {"term": 302}
 	 ]
 }, {
-	"ContentID": 2,
-	"title": "Album1",
-	"type": "alb",
+	"nid": 2,
+	"node_title": "Album1",
+	"node_type": "alb",
 	"publishDate": "/Date(1486184400000)/",
 	"expireDate": "/Date(1495771200000)/",
 	"body": "Toronto and Canada views ", 
-	"ImageSet" : [
-		{"src" :"img/1.jpg"},
-		{"src" :"img/2.jpg"},
-		{"src" :"img/3.jpg"},
-		{"src" :"img/4.jpg"},
-		{"src" :"img/5.jpg"}
+	"Images" : [
+		{"photo" :"img/1.jpg"},
+		{"photo" :"img/2.jpg"},
+		{"photo" :"img/3.jpg"},
+		{"photo" :"img/4.jpg"},
+		{"photo" :"img/5.jpg"}
 	],
 	"TermSet" : [
-		{"TermID": 3},
-	    {"TermID": 108},
-	    {"TermID": 201},
-	    {"TermID": 302}
+		{"term": 3},
+	    {"term": 108},
+	    {"term": 201},
+	    {"term": 302}
 	 ]
 }, {
-	"ContentID": 3,
-	"title": "Ad1",
-	"type": "ad",
+	"nid": 3,
+	"node_title": "Ad1",
+	"node_type": "ad",
 	"publishDate": "/Date(1486184400000)/",
 	"expireDate": "/Date(1492660800000)/"
 }]

@@ -76,6 +76,9 @@ sap.ui.controller("Reader1.view.Main", {
         if (selectedTerm.items !== undefined) {
             self.showReadItems(selectedTerm);
         }
+        else {
+            self.showContent(selectedTerm)
+        }
     },
 
     showContent: function (selectedTerm) {
@@ -86,17 +89,17 @@ sap.ui.controller("Reader1.view.Main", {
             async: true,
             success: function (data) {
                 var contentItem = Enumerable.from(data)
-                    .where(function(x){
-                       return Enumerable.from(x.TermSet).any(function(y){
-                           return y.TermID === selectedTerm.TermID;
-                       });
+                    .where(function (x) {
+                        return Enumerable.from(x.TermSet).any(function (y) {
+                            return y.term === selectedTerm.TermID;
+                        });
                     }).firstOrDefault();
-                if(contentItem != null){
-                    if(contentItem.type === "art"){
+                if (contentItem != null) {
+                    if (contentItem.node_type === "art") {
                         self.showArticle(self, contentItem);
                         return;
                     }
-                    if(contentItem.type === "alb"){
+                    if (contentItem.node_type === "alb" || contentItem.node_type === "album") {
                         self.showAlbum(self, contentItem);
                         return;
                     }
@@ -167,10 +170,10 @@ sap.ui.controller("Reader1.view.Main", {
 
         var carousel = context.getView().byId("galleryContent");
         carousel.removeAllPages();
-        for(var i=0; i<contentItem.ImageSet.length; i++){
+        for (var i = 0; i < contentItem.Images.length; i++) {
             carousel.addPage(new sap.m.Image({
-                src : contentItem.ImageSet[i].src,
-                alt : "img" + i
+                src: contentItem.Images[i].photo,
+                alt: "img" + i
             }));
         }
     },
@@ -187,10 +190,10 @@ sap.ui.controller("Reader1.view.Main", {
 
         var carousel = context.getView().byId("gallery");
         carousel.removeAllPages();
-        for(var i=0; i<contentItem.ImageSet.length; i++){
+        for (var i = 0; i < contentItem.Images.length; i++) {
             carousel.addPage(new sap.m.Image({
-                src : contentItem.ImageSet[i].src,
-                alt : "imgalt" + i
+                src: contentItem.Images[i].photo,
+                alt: "imgalt" + i
             }));
         }
     },
